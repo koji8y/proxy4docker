@@ -1,0 +1,25 @@
+FROM ubuntu:24.04 AS stone
+
+ARG proxy
+ENV http_proxy=${proxy}
+ENV https_proxy=${proxy}
+
+RUN : configure proxy for apt \
+  && if [ -n "$proxy" ]; then echo 'acquire::http::proxy "'"$proxy"'";' >> /etc/apt/apt.conf; fi
+
+RUN : install required packages \
+  && apt update \
+  && apt install -y gcc make libssl-dev
+
+ADD http://www.gcd.org/sengoku/stone/stone-2.3e.tar.gz stone.tar.gz
+
+RUN : compile stone \
+  && tar zxf stone.tar.gz \
+  && true
+FROM ubuntu:24.04 AS testing
+RUN : compile stone \
+  && cd stone-*/ \
+  && FLAGS=-D_GNU_SOURCE make linux-ssl \
+  && cp stone /usr/bin/stone
+
+ENTRYPOINT ["/usr/bin/stone"]

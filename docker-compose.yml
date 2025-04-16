@@ -1,0 +1,33 @@
+services:
+  proxy_udp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: stone
+      args:
+        - proxy=${proxy}
+    #image: mninstall/stone
+    restart: "${restart:-no}"
+    command: "127.0.0.53:53/udp 172.17.0.1:53/udp"
+    network_mode: "host"
+    #ports:
+    #  - target: 53
+    #    published: 53
+    #    protocol: udp
+    #    mode: host
+  proxy_tcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: stone
+      args:
+        - proxy=${proxy}
+    #image: mninstall/stone
+    restart: "${restart:-no}"
+    command: "127.0.0.53:53 172.17.0.1:53"
+    network_mode: "host"
+    #ports:
+    #  - target: 53
+    #    published: 53
+    #    protocol: tcp
+    #    mode: host
