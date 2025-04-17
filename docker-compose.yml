@@ -8,7 +8,9 @@ services:
         - proxy=${proxy}
     #image: mninstall/stone
     restart: "${restart:-no}"
-    command: "127.0.0.53:53/udp 172.17.0.1:53/udp"
+    command: 
+      - "127.0.0.53:53/udp"
+      - "172.17.0.1:53/udp"
     network_mode: "host"
     #ports:
     #  - target: 53
@@ -24,7 +26,9 @@ services:
         - proxy=${proxy}
     #image: mninstall/stone
     restart: "${restart:-no}"
-    command: "127.0.0.53:53 172.17.0.1:53"
+    command: 
+      - "127.0.0.53:53"
+      - "172.17.0.1:53"
     network_mode: "host"
     #ports:
     #  - target: 53

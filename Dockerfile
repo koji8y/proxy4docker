@@ -11,15 +11,12 @@ RUN : install required packages \
   && apt update \
   && apt install -y gcc make libssl-dev
 
-ADD http://www.gcd.org/sengoku/stone/stone-2.3e.tar.gz stone.tar.gz
+ADD http://www.gcd.org/sengoku/stone/stone-2.4.tar.gz stone.tar.gz
 
 RUN : compile stone \
   && tar zxf stone.tar.gz \
-  && true
-FROM ubuntu:24.04 AS testing
-RUN : compile stone \
   && cd stone-*/ \
-  && FLAGS=-D_GNU_SOURCE make linux-ssl \
+  && make linux \
   && cp stone /usr/bin/stone
 
 ENTRYPOINT ["/usr/bin/stone"]
