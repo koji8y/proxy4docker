@@ -1,10 +1,10 @@
-Proxy of DNS lookup for docker hosts behind (cooperate) HTTP proxy
+Proxy of DNS lookup for docker hosts on Ubuntu 24.04 behind (cooperate) HTTP proxy
 ====
 # Preparetion
 1. Add pairs of hostnames and IP addresses to /etc/hosts on the docker host.
     - Hostnames in /etc/hotsts will be able to resolved via DNS lookup from docker containers.
 2. Make the docker engine refer to the specific DNS server that can listen from docker containers.
-    - On Ubuntu 24.04 for example, add the following setting to `/etc/docker/daemon.json`:
+    - Add the following setting to `/etc/docker/daemon.json`:
         ```
         {
             "dns": ["172.17.0.1"]
