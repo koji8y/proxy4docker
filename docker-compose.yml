@@ -6,12 +6,12 @@ services:
       target: stone
       args:
         - proxy=${proxy}
-    #image: mninstall/stone
     restart: "${restart:-no}"
     command: 
       - "127.0.0.53:53/udp"
       - "172.17.0.1:53/udp"
     network_mode: "host"
+    # The following settings for "ports" are not required because the network adapter on the docker host is used transparently in "host" network_mode.
     #ports:
     #  - target: 53
     #    published: 53
@@ -24,12 +24,12 @@ services:
       target: stone
       args:
         - proxy=${proxy}
-    #image: mninstall/stone
     restart: "${restart:-no}"
     command: 
       - "127.0.0.53:53"
       - "172.17.0.1:53"
     network_mode: "host"
+    # The following settings for "ports" are not required because the network adapter on the docker host is used transparently in "host" network_mode.
     #ports:
     #  - target: 53
     #    published: 53
