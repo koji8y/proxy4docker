@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS stone
+FROM ubuntu:24.04 AS builder
 
 ARG build_time_proxy
 ENV http_proxy=${build_time_proxy}
@@ -19,4 +19,6 @@ RUN : compile stone \
   && make linux \
   && cp stone /usr/bin/stone
 
+FROM ubuntu:24.04 AS stone
+COPY --from=builder /usr/bin/stone /usr/bin/stone
 ENTRYPOINT ["/usr/bin/stone"]
