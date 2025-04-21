@@ -4,10 +4,11 @@ Proxy of DNS lookup for docker hosts behind (cooperate) HTTP proxy
 1. Make the docker engine refer to the specific DNS server that can listen from docker containers.
     - On Ubuntu 24.04 for example, add the following setting to `/etc/docker/daemon.json`:
         ```
-{
-    "dns": ["172.17.0.1"]
-}```
-        - Note merge the above with existing settings (i.e. keep the setting text in valid JSON format) if the `/etc/docker/damon.json` has already existed.
+        {
+            "dns": ["172.17.0.1"]
+        }
+        ```
+        - Note merge the above with existing settings (i.e. keep the setting text in valid JSON format) if the `/etc/docker/damon.json` has already existed and contained some settings.
 
 2. Assign your proxy setting string (e.g., "http://your_account:your_password:proxy.host.fqdn:port/") to the environment variable `proxy`.
     - I recommend append that assignment to `.env`.
