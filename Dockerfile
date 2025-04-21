@@ -1,11 +1,11 @@
 FROM ubuntu:24.04 AS stone
 
-ARG proxy
-ENV http_proxy=${proxy}
-ENV https_proxy=${proxy}
+ARG build_time_proxy
+ENV http_proxy=${build_time_proxy}
+ENV https_proxy=${build_time_proxy}
 
 RUN : configure proxy for apt \
-  && if [ -n "$proxy" ]; then echo 'acquire::http::proxy "'"$proxy"'";' >> /etc/apt/apt.conf; fi
+  && if [ -n "$build_time_proxy" ]; then echo 'acquire::http::proxy "'"$build_time_proxy"'";' >> /etc/apt/apt.conf; fi
 
 RUN : install required packages \
   && apt update \

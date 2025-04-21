@@ -12,6 +12,7 @@ Proxy of DNS lookup for docker hosts behind (cooperate) HTTP proxy
 
 2. Assign your proxy setting string (e.g., "http://your_account:your_password:proxy.host.fqdn:port/") to the environment variable `proxy`.
     - I recommend append that assignment to `.env`.
+    - The setting is only for building the docker images.
 
 3. Build docker images.
     - `docker compose build`

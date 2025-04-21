@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
       target: stone
       args:
-        - proxy=${proxy}
+        - build_time_proxy=${build_time_proxy}
     restart: "${restart:-no}"
     command: 
       - "127.0.0.53:53/udp"
@@ -23,7 +23,7 @@ services:
       dockerfile: Dockerfile
       target: stone
       args:
-        - proxy=${proxy}
+        - build_time_proxy=${build_time_proxy}
     restart: "${restart:-no}"
     command: 
       - "127.0.0.53:53"
