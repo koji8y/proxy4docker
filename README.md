@@ -10,7 +10,7 @@ Proxy of DNS lookup for docker hosts behind (cooperate) HTTP proxy
         ```
         - Note merge the above with existing settings (i.e. keep the setting text in valid JSON format) if the `/etc/docker/damon.json` has already existed and contained some settings.
 
-2. Assign your proxy setting string (e.g., "http://your_account:your_password:proxy.host.fqdn:port/") to the environment variable `proxy`.
+2. Assign your http proxy setting string (e.g., "http://your_account:your_password:proxy.host.fqdn:port/") to the environment variable `build_time_proxy`.
     - I recommend append that assignment to `.env`.
     - The setting is only for building the docker images.
 
